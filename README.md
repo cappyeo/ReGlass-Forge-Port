@@ -1,1 +1,48 @@
-# ReGlass-Forge-Port
+# ReGlass By ReStudio
+### Liquid Glass Implemented On Your Favorite Pixelated And Cubic Game
+
+<img width="669" height="422" alt="Screenshot 2025-10-20 113022" src="https://github.com/user-attachments/assets/d5c99347-c8cd-4c21-a430-54a0499c5f0f" />
+
+
+ReGlass Is Meant To Be An API For Any Minecraft Mod.
+
+### Features
+- Easy, Customizable, And Fast Glass Rendering API.
+- Highly Optimized, Almost Vanilla Performance (For Dedicated GPU PCs).
+- Some Minecraft UI Redesigns.
+
+### API Example:
+```java
+// Widget Based Dimensions
+int cornerRadiusPx = 0.5f * Math.min(width, height); // Recommended Rounding
+ReGlassApi.create(context).fromWidget(someWidget).cornerRadius(cornerRadiusPx).render();
+
+// Custom Style 
+customStyle = WidgetStyle.create()
+        .tint(Formatting.GOLD.getColorValue(), 0.4f)
+        .blurRadius(0).shadow(25f, 0.2f, 0f, 3f)
+        .smoothing(.05f).shadowColor(0x000000, 1.0f);
+
+// Static Based Rendering E.g. Called From Screen `render()`.
+ReGlassApi.create(context).dimensions(10, 10, 100, 100).cornerRadius(cornerRadiusPx).style(customStyle).render();
+
+// You Must Apply Blur
+LiquidGlassUniforms.get().tryApplyBlur(context);
+
+
+// Ready To Use Widget (Screen Usage Example):
+boolean moveable = true; // Makes The Widget Draggable
+addDrawableChild(new LiquidGlassWidget(width / 2 - 75, height / 2 - 25, 150, 50, null).setMoveable(moveable));
+```
+
+### Keybinds:
+- ReGlass keybinds are unbound by default and can be changed in Minecraft's Controls screen.
+
+### Building:
+- `./gradlew :26.3:runClient` runs the current 26.3 Fabric target.
+- `./gradlew buildAll` builds all supported targets: 26.3, 26.2, 26.1, and 1.21.11.
+
+## Contributing Is More Than Welcome!
+Especially In The Minecraft UI Redesign Part, This Part Is Highly WIP And Needs a Lot of Work.
+
+<img width="426" height="251" alt="Sun Set" src="https://github.com/user-attachments/assets/8231c19b-abea-42b2-807f-35c3f089d3c0" />
