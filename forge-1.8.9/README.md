@@ -5,6 +5,9 @@ The modern Fabric sources in the repository remain separate.
 
 ## Install
 
+Download `reglass-forge-1.8.9-2.1.0.jar` from the
+[Forge release page](https://github.com/cappyeo/ReGlass-Forge-Port/releases/tag/v2.1.0-forge-1.8.9).
+
 1. Install Minecraft Forge **1.8.9 – 11.15.1.2318** and run the game using Java 8.
 2. Copy `build/libs/reglass-forge-1.8.9-2.1.0.jar` into the instance's `mods` directory.
 3. Open **Mods → ReGlass → Config**, or assign ReGlass shortcuts in **Options → Controls**.

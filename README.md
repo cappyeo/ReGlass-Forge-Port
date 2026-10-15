@@ -2,6 +2,8 @@
 
 ### Minecraft Forge 1.8.9 port
 
+Download the [Forge 1.8.9 release](https://github.com/cappyeo/ReGlass-Forge-Port/releases/tag/v2.1.0-forge-1.8.9).
+
 The standalone Java 8 / Forge 11.15.1.2318 target is in [`forge-1.8.9/`](forge-1.8.9/BUILDING.md).
 Build it independently from the modern Fabric targets:
 

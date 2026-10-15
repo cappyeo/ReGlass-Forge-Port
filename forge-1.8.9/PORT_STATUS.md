@@ -37,3 +37,6 @@ and UI compatibility limits.
 Release line: `v2.1.0-forge-1.8.9`. Release packages contain the reobfuscated mod,
 the port sources and SHA-256 checksums. GitHub Release notes record the verified
 checks and the remaining gameplay acceptance limits.
+
+Release repository: [cappyeo/ReGlass-Forge-Port](https://github.com/cappyeo/ReGlass-Forge-Port).
+Release page: [v2.1.0-forge-1.8.9](https://github.com/cappyeo/ReGlass-Forge-Port/releases/tag/v2.1.0-forge-1.8.9).
