@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "reglass",
+    "name": "ReGlass",
+    "description": "Liquid glass UI rendering API for Minecraft Forge 1.8.9.",
+    "version": "${version}",
+    "mcversion": "1.8.9",
+    "url": "https://github.com/laylafights-create/ReGlass-Forge-Port",
+    "updateUrl": "",
+    "authorList": ["ReStudio"],
+    "credits": "ReGlass contributors",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]

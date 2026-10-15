@@ -1,4 +1,19 @@
 # ReGlass By ReStudio
+
+### Minecraft Forge 1.8.9 port
+
+The standalone Java 8 / Forge 11.15.1.2318 target is in [`forge-1.8.9/`](forge-1.8.9/BUILDING.md).
+Build it independently from the modern Fabric targets:
+
+```powershell
+cd forge-1.8.9
+.\gradlew.bat build
+```
+
+The installable, reobfuscated mod is written to `forge-1.8.9/build/libs/`.
+See the [port guide](forge-1.8.9/README.md) for installation, the legacy rendering API,
+and compatibility limits.
+
 ### Liquid Glass Implemented On Your Favorite Pixelated And Cubic Game
 
 <img width="669" height="422" alt="Screenshot 2025-10-20 113022" src="https://github.com/user-attachments/assets/d5c99347-c8cd-4c21-a430-54a0499c5f0f" />

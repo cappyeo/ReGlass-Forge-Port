@@ -1,0 +1,6 @@
+# Local runtime output; never ship logs, generated classes or the game workspace.
+/logs/
+/run/
+/config/
+/build/
+/.gradle/

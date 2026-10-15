@@ -1,0 +1,96 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public' }
+        mavenCentral()
+    }
+    dependencies {
+        // ForgeGradle 2.1 is the last stable ForgeGradle line for the 1.8.x toolchain.
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-20211118.174922-42'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'java'
+
+group = project.maven_group
+version = project.mod_version
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+sourceSets {
+    main {
+        java.srcDirs = ['src/main/java']
+        resources.srcDirs = ['src/main/resources']
+    }
+}
+
+minecraft {
+    version = '1.8.9-11.15.1.2318-1.8.9'
+    mappings = 'stable_22'
+    runDir = 'run'
+}
+
+repositories {
+    maven { url = 'https://maven.minecraftforge.net' }
+    mavenCentral()
+}
+
+configurations {
+    glTestNatives
+}
+
+dependencies {
+    // ForgeGradle supplies the deobfuscated Minecraft/Forge compile classpath.
+    testCompile 'junit:junit:4.13.2'
+    def systemName = System.getProperty('os.name').toLowerCase(Locale.ROOT)
+    def platform = systemName.contains('win') ? 'windows' : systemName.contains('mac') ? 'osx' : 'linux'
+    glTestNatives "org.lwjgl.lwjgl:lwjgl-platform:2.9.4-nightly-20150209:natives-${platform}"
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('mcmod.info') {
+        expand 'version': project.version
+    }
+}
+
+jar {
+    archiveName = "${project.archives_base_name}-forge-1.8.9-${project.version}.jar"
+    manifest {
+        attributes(
+                'FMLCorePlugin': 'restudio.reglass.core.ReGlassLoadingPlugin',
+                'FMLCorePluginContainsFMLMod': 'true',
+                'ForceLoadAsMod': 'true'
+        )
+    }
+    from('../LICENSE') {
+        rename { "${it}_${project.archives_base_name}" }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task extractGlTestNatives(type: Sync) {
+    from { configurations.glTestNatives.collect { zipTree(it) } }
+    into "$buildDir/gl-test-natives"
+    exclude 'META-INF/**'
+}
+
+test {
+    systemProperty 'reglass.obfuscatedJar', new File(gradle.gradleUserHomeDir,
+            'caches/minecraft/net/minecraft/minecraft/1.8.9/minecraft-1.8.9.jar').absolutePath
+    def glEnabled = System.getProperty('reglass.glTests', 'false') == 'true'
+    systemProperty 'reglass.glTests', glEnabled
+    if (glEnabled) {
+        dependsOn extractGlTestNatives
+        systemProperty 'java.library.path', file("$buildDir/gl-test-natives").absolutePath
+    }
+}
+
+runClient {
+    jvmArgs '-Dfml.coreMods.load=restudio.reglass.core.ReGlassLoadingPlugin'
+}
